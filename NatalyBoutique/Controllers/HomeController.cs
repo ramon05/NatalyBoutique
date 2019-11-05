@@ -5,15 +5,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NatalyBoutique.Models;
+using NatalyBoutique.Repository;
 
 namespace NatalyBoutique.Controllers
 {
 	public class HomeController : Controller
 	{
-		public IActionResult Index()
+		//private readonly ProcedureRepository _procedureRepository;
+		private readonly ProcedureRepository _context;
+
+		public HomeController(ProcedureRepository context)
 		{
-			return View();
+			_context = context;
 		}
+
+		public  IActionResult Index()
+		{
+			var result  = _context.OdtenerTodo();
+			
+			return View( result);
+		}
+
+		//public IActionResult MostrarProcedure()
+		//{
+		//	var result = _procedureRepository.GetAll();
+		//	return View(result);
+		//}
 
 		public IActionResult Privacy()
 		{

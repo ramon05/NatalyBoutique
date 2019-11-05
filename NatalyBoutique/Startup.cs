@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NatalyBoutique.Models;
+using NatalyBoutique.Repository;
 
 namespace NatalyBoutique
 {
@@ -16,14 +19,21 @@ namespace NatalyBoutique
 	{
 		public Startup(IConfiguration configuration)
 		{
-			Configuration = configuration;
+			this.configuration = configuration;
 		}
 
-		public IConfiguration Configuration { get; }
+		public IConfiguration configuration { get; }
 
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			//ConnectionString del DbContext
+			services.AddDbContext<NatalyBoutiqueContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+			services.AddScoped<ProcedureRepository>();
+
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
 			services.Configure<CookiePolicyOptions>(options =>
 			{
 				// This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -31,8 +41,8 @@ namespace NatalyBoutique
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
-
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+			
+			
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
