@@ -19,16 +19,16 @@ namespace NatalyBoutique.Controllers
 			_context = context;
 		}
 
-		public  IActionResult Index()
+		public async Task<ActionResult> Index()
 		{
-			var result  = _context.OdtenerTodo();
-			
-			return View( result);
+			var result = await _context.GetAll();
+
+			return View(result);
 		}
 
-		//public IActionResult MostrarProcedure()
+		//public IActionResult Index()
 		//{
-		//	var result = _procedureRepository.GetAll();
+		//	var result =  _context.OdtenerTodo();
 		//	return View(result);
 		//}
 

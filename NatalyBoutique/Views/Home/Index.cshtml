@@ -1,8 +1,112 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IList<NatalyBoutique.Procedure.MostrarTodo> 
+
+@{
+	ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h4>Nataly´s Boutique</h4>
+
+
+<table class="table table-bordered table-responsive-sm">
+	<thead class="btn-success">
+		<tr>
+			<th>
+				Fecha
+			</th>
+			<th>
+				Número Pedidos
+			</th>
+			<th>
+				Número Cliente
+			</th>
+			<th>
+				Nombre Cliente
+			</th>
+			<th>
+				Direccion
+			</th>
+			<th>
+				Telefono
+			</th>
+			<th>
+				Cantidad Surtida
+			</th>
+			<th>
+				Cantidad Ordenada
+			</th>
+			<th>
+				Seccion Bodega
+			</th>
+			<th>
+				Número Estante
+			</th>
+			<th>
+				Número Articulo
+			</th>
+			<th>
+				Descripción
+			</th>
+			<th>
+				size
+			</th>
+			<th>
+				Color
+			</th>
+			<th>
+				Catidad Pedido
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Fecha)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Id_Pedidos)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Id_Cliente)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Nombre)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Direccion)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Telefono)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CantidadSurtida)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CantidadOrdenada)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.SeccionBodega)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.NumeroEstante)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Id_Articulo)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Descripcion)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Tamaño)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Color)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CantidadPedido)
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>

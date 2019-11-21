@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NatalyBoutique.Models;
 using NatalyBoutique.Procedure;
@@ -13,59 +14,61 @@ namespace NatalyBoutique.Repository
 	public class ProcedureRepository
 	{
 		private readonly string _connectionString;
+		//private readonly NatalyBoutiqueContext  _natalyBoutique;
 
-		public ProcedureRepository(IConfiguration configuration)
+		public ProcedureRepository(IConfiguration configuration )
 		{
 			_connectionString = configuration.GetConnectionString("DefaultConnection");
+			//natalyBoutique = _natalyBoutique;
 		}
 
-		//public async Task<List<ProcedureMostrarTodo>> GetAll()
-		//{
-		//	using(SqlConnection sql = new SqlConnection(_connectionString))
-		//	{
-		//		using(SqlCommand cmd = new SqlCommand("MostrarTodo"))
-		//		{
-		//			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-		//			var response = new List<ProcedureMostrarTodo>();
-		//			await sql.OpenAsync();
+		public async Task<List<MostrarTodo>> GetAll()
+		{
+			using (SqlConnection sql = new SqlConnection(_connectionString))
+			{
 
-		//			using(var reader = await cmd.ExecuteReaderAsync())
-		//			{
-		//				while(await reader.ReadAsync())
-		//				{
-		//					response.Add(MapToValue(reader));
-		//				}
-		//			}
+				using (SqlCommand cmd = new SqlCommand("MostrarTodo", sql))
+				{
+					cmd.CommandType = System.Data.CommandType.StoredProcedure;
+					var response = new List<MostrarTodo>();
+					await sql.OpenAsync();
 
-		//			return response;
-		//		}
-		//	}
-		//}
+					using (var reader = await cmd.ExecuteReaderAsync())
+					{
+						while (await reader.ReadAsync())
+						{
+							response.Add(MapToValue(reader));
+						}
+					}
 
-		//	private ProcedureMostrarTodo MapToValue(SqlDataReader reader)
-		//	{
-		//		return new ProcedureMostrarTodo()
-		//		{
-		//			Fecha = reader["Fecha"].ToString(),
-		//			Id_Pedido = (int)reader["Id_Pedido"],
-		//			Id_Cliente = (int)reader["Id_Cliente"],
-		//			Nombre = reader["Nombre"].ToString(),
-		//			DireccionClient = reader["DireccionClient"].ToString(),
-		//			Telefono = reader["Telefono"].ToString(),
-		//			CantSurtida = (int)reader["CantSurtida"],
-		//			CantOrdenada =(int)reader["CantOrdenada"],
-		//			Seccion = reader["Seccion"].ToString(),
-		//			NumEstante = (int)reader["NumEstante"],
-		//			Id_Articulo = (int)reader["Id_Articulo"],
-		//			Direccion = reader["Direccion"].ToString(),
-		//			Size = (int)reader["Size"],
-		//			Color = reader["Color"].ToString(),
-		//			CantPedida = (int)reader["CantPedida"]
-		//		};
-		//	}
-		//}
+					return response;
+				}
+			}
+		}
 
-		public List<ProcedureMostrarTodo> OdtenerTodo()
+		private MostrarTodo MapToValue(SqlDataReader reader)
+		{
+			return new MostrarTodo()
+			{
+				Fecha = Convert.ToDateTime(reader["Fecha"]),
+				Id_Pedidos = (int)reader["Id_Pedidos"],
+				Id_Cliente = (int)reader["Id_Cliente"],
+				Nombre = reader["Nombre"].ToString(),
+				Direccion = reader["Direccion"].ToString(),
+				Telefono = reader["Telefono"].ToString(),
+				CantidadSurtida = (int)reader["CantidadSurtida"],
+				CantidadOrdenada = (int)reader["CantidadOrdenada"],
+				SeccionBodega = reader["SeccionBodega"].ToString(),
+				NumeroEstante = (int)reader["NumeroEstante"],
+				Id_Articulo = (int)reader["Id_Articulo"],
+				Descripcion = reader["Descripcion"].ToString(),
+				Tamaño = reader["Tamaño"].ToString(),
+				Color = reader["Color"].ToString(),
+				CantidadPedido = (int)reader["CantidadPedido"]
+			};
+		}
+
+		public List<MostrarTodo> OdtenerTodo()
 		{
 			using (var cont = new NatalyBoutiqueContext())
 			{
@@ -73,20 +76,20 @@ namespace NatalyBoutique.Repository
 					from p in cont.Pedidos
 					join c in cont.Clientes on p.IdCliente equals c.IdCliente
 					join dt in cont.DetallePedidos on p.IdPedidos equals dt.IdPedido
-					select new ProcedureMostrarTodo
+					select new MostrarTodo
 					{
 						Fecha = p.Fecha,
 						Nombre = c.Nombre,
-						DireccionClient = c.Direccion,
+						Direccion = c.Direccion,
 						Telefono = c.Telefono,
-						CantSurtida = dt.CantidadSurtida,
-						CantOrdenada = dt.CantidadOrdenada,
-						Seccion = dt.SeccionBodega,
-						NumEstante = dt.NumeroEstante,
-						Direccion = dt.Descripcion,
-						Size = dt.Tamaño,
+						CantidadSurtida = dt.CantidadSurtida,
+						CantidadOrdenada = dt.CantidadOrdenada,
+						SeccionBodega = dt.SeccionBodega,
+						NumeroEstante = dt.NumeroEstante,
+						Descripcion = dt.Descripcion,
+						Tamaño = dt.Tamaño,
 						Color = dt.Color,
-						CantPedido = p.CantidadPedido
+						CantidadPedido = p.CantidadPedido
 					}
 				).ToList();
 			}
@@ -94,3 +97,6 @@ namespace NatalyBoutique.Repository
 
 	}
 }
+
+	
+
