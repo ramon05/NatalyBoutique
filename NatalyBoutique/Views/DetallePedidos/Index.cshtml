@@ -2,52 +2,49 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Listados de Detalle Pedidos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" asp-action="Create">Nuevo DetallePedido</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-responsive-sm">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tamaño)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Color)
             </th>
+			<th>
+				Seccion Bodega
+			</th>
+			<th>
+				Numero Estante
+			</th>
+			<th>
+				Cantidad Ordenada
+			</th>
+			<th>
+				Cantidad Surtida
+			</th>
+			<th>
+				IdArticulo
+			</th>
+			<th>
+				IdPedido
+			</th>
             <th>
-                @Html.DisplayNameFor(model => model.SeccionBodega)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumeroEstante)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantidadOrdenada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantidadSurtida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdArticuloNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPedidoNavigation)
-            </th>
-            <th></th>
+				Acciones
+			</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tamaño)
             </td>
@@ -73,9 +70,9 @@
                 @Html.DisplayFor(modelItem => item.IdPedidoNavigation.IdPedidos)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdDetallePedido">Editar</a> 
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdDetallePedido">Detalle</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdDetallePedido">Eliminar</a>
             </td>
         </tr>
 }

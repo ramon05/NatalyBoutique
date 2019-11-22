@@ -68,32 +68,32 @@ namespace NatalyBoutique.Repository
 			};
 		}
 
-		public List<MostrarTodo> OdtenerTodo()
-		{
-			using (var cont = new NatalyBoutiqueContext())
-			{
-				return (
-					from p in cont.Pedidos
-					join c in cont.Clientes on p.IdCliente equals c.IdCliente
-					join dt in cont.DetallePedidos on p.IdPedidos equals dt.IdPedido
-					select new MostrarTodo
-					{
-						Fecha = p.Fecha,
-						Nombre = c.Nombre,
-						Direccion = c.Direccion,
-						Telefono = c.Telefono,
-						CantidadSurtida = dt.CantidadSurtida,
-						CantidadOrdenada = dt.CantidadOrdenada,
-						SeccionBodega = dt.SeccionBodega,
-						NumeroEstante = dt.NumeroEstante,
-						Descripcion = dt.Descripcion,
-						Tamaño = dt.Tamaño,
-						Color = dt.Color,
-						CantidadPedido = p.CantidadPedido
-					}
-				).ToList();
-			}
-		}
+		//public List<MostrarTodo> OdtenerTodo()
+		//{
+		//	using (var cont = new NatalyBoutiqueContext())
+		//	{
+		//		return (
+		//			from p in cont.Pedidos
+		//			join c in cont.Clientes on p.IdCliente equals c.IdCliente
+		//			join dt in cont.DetallePedidos on p.IdPedidos equals dt.IdPedido
+		//			select new MostrarTodo
+		//			{
+		//				Fecha = p.Fecha,
+		//				Nombre = c.Nombre,
+		//				Direccion = c.Direccion,
+		//				Telefono = c.Telefono,
+		//				CantidadSurtida = dt.CantidadSurtida,
+		//				CantidadOrdenada = dt.CantidadOrdenada,
+		//				SeccionBodega = dt.SeccionBodega,
+		//				NumeroEstante = dt.NumeroEstante,
+		//				Descripcion = dt.Descripcion,
+		//				Tamaño = dt.Tamaño,
+		//				Color = dt.Color,
+		//				CantidadPedido = p.CantidadPedido
+		//			}
+		//		).ToList();
+		//	}
+		//}
 
 	}
 }

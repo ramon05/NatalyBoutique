@@ -1,16 +1,17 @@
 ﻿@model IEnumerable<NatalyBoutique.Models.Clientes>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h2>Listados de Clientes</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" asp-action="Create">Nuevo Cliente</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-bordered table-primary">
+    <thead class="bg-danger">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
@@ -21,7 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Telefono)
             </th>
-            <th></th>
+            <th>
+				Aciones
+			</th>
         </tr>
     </thead>
     <tbody>
@@ -37,9 +40,9 @@
                 @Html.DisplayFor(modelItem => item.Telefono)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCliente">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdCliente">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCliente">Delete</a>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdCliente">Editar</a> 
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdCliente">Detalle</a> 
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdCliente">Eliminar</a>
             </td>
         </tr>
 }

@@ -40,7 +40,12 @@ namespace NatalyBoutique.Models
 
                 entity.Property(e => e.IdArticulo).HasColumnName("Id_articulo");
 
-                entity.Property(e => e.Precio).HasColumnType("decimal(8, 2)");
+				entity.Property(e => e.Descripcion)
+					.IsRequired()
+					.HasMaxLength(100)
+					.IsUnicode(false);
+
+				entity.Property(e => e.Precio).HasColumnType("decimal(8, 2)");
             });
 
             modelBuilder.Entity<Clientes>(entity =>
@@ -68,21 +73,18 @@ namespace NatalyBoutique.Models
 
             modelBuilder.Entity<DetallePedidos>(entity =>
             {
-                entity.HasKey(e => new { e.IdPedido, e.IdArticulo })
+                entity.HasKey(e => new { e.IdDetallePedido})
                     .HasName("PK_DetallePedido");
 
-                entity.Property(e => e.IdPedido).HasColumnName("Id_Pedido");
+				entity.Property(e => e.IdDetallePedido).HasColumnName("Id_DetallePedido");
+
+				entity.Property(e => e.IdPedido).HasColumnName("Id_Pedido");
 
                 entity.Property(e => e.IdArticulo).HasColumnName("Id_Articulo");
 
                 entity.Property(e => e.Color)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Descripcion)
-                    .IsRequired()
-                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.SeccionBodega)

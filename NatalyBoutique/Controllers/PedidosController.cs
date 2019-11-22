@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using NatalyBoutique.Models;
 
 namespace NatalyBoutique.Controllers
@@ -35,7 +36,7 @@ namespace NatalyBoutique.Controllers
 
             var pedidos = await _context.Pedidos
                 .Include(p => p.IdClienteNavigation)
-                .FirstOrDefaultAsync(m => m.IdPedidos == id);
+				.FirstOrDefaultAsync(m => m.IdPedidos == id);
             if (pedidos == null)
             {
                 return NotFound();
@@ -81,7 +82,7 @@ namespace NatalyBoutique.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdCliente"] = new SelectList(_context.Clientes, "IdCliente", "Direccion", pedidos.IdCliente);
+            ViewData["IdCliente"] = new SelectList(_context.Clientes, "IdCliente", "Nombre", pedidos.IdCliente);
             return View(pedidos);
         }
 
@@ -117,7 +118,7 @@ namespace NatalyBoutique.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCliente"] = new SelectList(_context.Clientes, "IdCliente", "Direccion", pedidos.IdCliente);
+            ViewData["IdCliente"] = new SelectList(_context.Clientes, "IdCliente", "Nombre", pedidos.IdCliente);
             return View(pedidos);
         }
 

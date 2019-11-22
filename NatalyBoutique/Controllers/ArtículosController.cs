@@ -53,7 +53,7 @@ namespace NatalyBoutique.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdArticulo,Precio,CantidadExistencia")] Artículos artículos)
+        public async Task<IActionResult> Create([Bind("IdArticulo,Descripcion,Precio,CantidadExistencia")] Artículos artículos)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace NatalyBoutique.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdArticulo,Precio,CantidadExistencia")] Artículos artículos)
+        public async Task<IActionResult> Edit(int id, [Bind("IdArticulo,Descripcion,Precio,CantidadExistencia")] Artículos artículos)
         {
             if (id != artículos.IdArticulo)
             {

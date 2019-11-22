@@ -36,7 +36,7 @@ namespace NatalyBoutique.Controllers
             var detallePedidos = await _context.DetallePedidos
                 .Include(d => d.IdArticuloNavigation)
                 .Include(d => d.IdPedidoNavigation)
-                .FirstOrDefaultAsync(m => m.IdPedido == id);
+                .FirstOrDefaultAsync(m => m.IdDetallePedido == id);
             if (detallePedidos == null)
             {
                 return NotFound();
@@ -58,7 +58,7 @@ namespace NatalyBoutique.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPedido,IdArticulo,Descripcion,Tamaño,Color,SeccionBodega,NumeroEstante,CantidadOrdenada,CantidadSurtida")] DetallePedidos detallePedidos)
+        public async Task<IActionResult> Create([Bind("IdDetallePedido,IdPedido,IdArticulo,Tamaño,Color,SeccionBodega,NumeroEstante,CantidadOrdenada,CantidadSurtida")] DetallePedidos detallePedidos)
         {
             if (ModelState.IsValid)
             {
@@ -94,9 +94,9 @@ namespace NatalyBoutique.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPedido,IdArticulo,Descripcion,Tamaño,Color,SeccionBodega,NumeroEstante,CantidadOrdenada,CantidadSurtida")] DetallePedidos detallePedidos)
+        public async Task<IActionResult> Edit(int id, [Bind("IdDetallePedido,IdPedido,IdArticulo,Tamaño,Color,SeccionBodega,NumeroEstante,CantidadOrdenada,CantidadSurtida")] DetallePedidos detallePedidos)
         {
-            if (id != detallePedidos.IdPedido)
+            if (id != detallePedidos.IdDetallePedido)
             {
                 return NotFound();
             }
@@ -110,7 +110,7 @@ namespace NatalyBoutique.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DetallePedidosExists(detallePedidos.IdPedido))
+                    if (!DetallePedidosExists(detallePedidos.IdDetallePedido))
                     {
                         return NotFound();
                     }
@@ -137,7 +137,7 @@ namespace NatalyBoutique.Controllers
             var detallePedidos = await _context.DetallePedidos
                 .Include(d => d.IdArticuloNavigation)
                 .Include(d => d.IdPedidoNavigation)
-                .FirstOrDefaultAsync(m => m.IdPedido == id);
+                .FirstOrDefaultAsync(m => m.IdDetallePedido == id);
             if (detallePedidos == null)
             {
                 return NotFound();
@@ -159,7 +159,7 @@ namespace NatalyBoutique.Controllers
 
         private bool DetallePedidosExists(int id)
         {
-            return _context.DetallePedidos.Any(e => e.IdPedido == id);
+            return _context.DetallePedidos.Any(e => e.IdDetallePedido == id);
         }
     }
 }

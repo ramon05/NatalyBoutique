@@ -5,38 +5,46 @@
 
 }
 
-<h1>Index</h1>
+<h2>Listados de Artículos</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" asp-action="Create">Nuevo Artículo</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-responsive-sm">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantidadExistencia)
-            </th>
-            <th></th>
-        </tr>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Descripcion)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Precio)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CantidadExistencia)
+			</th>
+			<th>
+				Acciones
+			</th>
+		</tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CantidadExistencia)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdArticulo">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdArticulo">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdArticulo">Delete</a>
-            </td>
-        </tr>
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Descripcion)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Precio)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CantidadExistencia)
+			</td>
+			<td>
+				<a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdArticulo">Edit</a> 
+				<a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdArticulo">Details</a>
+				<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdArticulo">Delete</a>
+			</td>
+		</tr>
 }
     </tbody>
 </table>
