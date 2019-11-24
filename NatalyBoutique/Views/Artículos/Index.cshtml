@@ -10,9 +10,9 @@
 <p>
     <a class="btn btn-success" asp-action="Create">Nuevo Artículo</a>
 </p>
-<table class="table table-bordered table-responsive-sm">
-    <thead>
-		<tr>
+<table class="table table-bordered table-responsive-sm bg-light">
+    <thead class="bg-dark rounded-top">
+		<tr class="text-white rounded-top">
 			<th>
 				@Html.DisplayNameFor(model => model.Descripcion)
 			</th>
@@ -40,9 +40,9 @@
 				@Html.DisplayFor(modelItem => item.CantidadExistencia)
 			</td>
 			<td>
-				<a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdArticulo">Edit</a> 
-				<a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdArticulo">Details</a>
-				<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdArticulo">Delete</a>
+				<a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdArticulo">Editar</a> 
+				<a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdArticulo">Detalle</a>
+				<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdArticulo">Eliminar</a>
 			</td>
 		</tr>
 }
