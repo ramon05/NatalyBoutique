@@ -18,19 +18,16 @@
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body background="C:\Users\Ramon\Documents\Algoritmo Computacionales\Proyecto Final\NatalyBoutique\NatalyBoutique\Imagenes/foot.jpg" >
-	
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-		<a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Nataly Boutique</a>
-		@*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="# navbarColor02" aria-controls="navbarColor02" aria-extended="false" aria-label="Navegación de palanca ">
-			<span class="navbar-toggler-icon"> </span>
-		</button>*@
+<body background="C:\Users\Ramon\Documents\Algoritmo Computacionales\Proyecto Final\NatalyBoutique\NatalyBoutique\Imagenes/foot.jpg">
 
-		<div class="collapse navbar-collapse" id="navbarColor02">
+	@*<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+		<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Nataly Boutique</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="true" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="navbar-collapse collapse show" id="navbarColor01" style="">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-				</li>
 				<li class="nav-item">
 					<a class="nav-link text-white" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
 				</li>
@@ -43,14 +40,38 @@
 				<li class="nav-item">
 					<a class="nav-link text-white" asp-area="" asp-controller="DetallePedidos" asp-action="Index">Detalle de Pedidos</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-				</li>
 			</ul>
-			
 		</div>
-	</nav>
-	
+	</nav>*@
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+			<a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Nataly Boutique</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-extended="true" aria-label="Navegación de palanca ">
+				<span class="navbar-toggler-icon"> </span>
+			</button>
+
+			<div class="navbar-collapse collapse show" id="navbarColor02">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link text-white" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white" asp-area="" asp-controller="Artículos" asp-action="Index">Artículos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white" asp-area="" asp-controller="Pedidos" asp-action="Index">Pedidos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white" asp-area="" asp-controller="DetallePedidos" asp-action="Index">Detalle de Pedidos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+					</li>
+				</ul>
+
+			</div>
+		</nav>
+
 	<div class="container">
 		<partial name="_CookieConsentPartial" />
 		<main role="main" class="pb-3">
@@ -83,7 +104,7 @@
 		</script>
 	</environment>
 	<script src="~/js/site.js" asp-append-version="true"></script>
-	
+
 
 	@RenderSection("Scripts", required: false)
 </body>

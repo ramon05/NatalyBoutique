@@ -4,109 +4,111 @@
 	ViewData["Title"] = "Index";
 }
 
-<h4>Nataly´s Boutique</h4>
+<h3>Nataly´s Boutique</h3>
 
+<div class=”container-fluid”>
+	<table class="table table-bordered table-responsive-sm bg-light tableyo">
+		<thead class="bg-dark rounded-top">
+			<tr class="text-white rounded-top">
+				<th class="rounded-top">
+					Fecha
+				</th>
+				<th>
+					Num. Pedido
+				</th>
+				<th>
+					Num. Cliente
+				</th>
+				<th>
+					Nombre Cliente
+				</th>
+				<th>
+					Direccion
+				</th>
+				<th>
+					Telefono
+				</th>
+				<th>
+					Cant. Surtida
+				</th>
+				<th>
+					Cant. Ordenada
+				</th>
+				<th>
+					Secc. Bodega
+				</th>
+				<th>
+					Núm. Estante
+				</th>
+				<th>
+					Núm. Articulo
+				</th>
+				<th>
+					Descripción
+				</th>
+				<th>
+					size
+				</th>
+				<th>
+					Color
+				</th>
+				<th>
+					Cant. Pedido
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Fecha)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Id_Pedidos)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Id_Cliente)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Nombre)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Direccion)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Telefono)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CantidadSurtida)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CantidadOrdenada)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.SeccionBodega)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.NumeroEstante)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Id_Articulo)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Descripcion)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Tamaño)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Color)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CantidadPedido)
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
 
-<table class="table table-bordered table-responsive-sm bg-light tableyo">
-	<thead class="bg-dark rounded-top">
-		<tr class="text-white rounded-top">
-			<th class="rounded-top">
-				Fecha
-			</th>
-			<th>
-				Número Pedidos
-			</th>
-			<th>
-				Número Cliente
-			</th>
-			<th>
-				Nombre Cliente
-			</th>
-			<th>
-				Direccion
-			</th>
-			<th>
-				Telefono
-			</th>
-			<th>
-				Cantidad Surtida
-			</th>
-			<th>
-				Cantidad Ordenada
-			</th>
-			<th>
-				Seccion Bodega
-			</th>
-			<th>
-				Número Estante
-			</th>
-			<th>
-				Número Articulo
-			</th>
-			<th>
-				Descripción
-			</th>
-			<th>
-				size
-			</th>
-			<th>
-				Color
-			</th>
-			<th>
-				Catidad Pedido
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.Fecha)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Id_Pedidos)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Id_Cliente)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Nombre)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Direccion)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Telefono)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.CantidadSurtida)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.CantidadOrdenada)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.SeccionBodega)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.NumeroEstante)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Id_Articulo)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Descripcion)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Tamaño)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Color)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.CantidadPedido)
-			</td>
-		</tr>
-		}
-	</tbody>
-</table>
